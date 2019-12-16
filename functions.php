@@ -20,13 +20,13 @@ if(isset($_POST['loginbtn'])){
             if($row["Role"] == "admin")
         {
            $_SESSION['User'] = $row["username"];
-           $_Session['Role'] = $row["Role"];
+           $_SESSION['Role'] = $row["Role"];
            header('Location: admin.php');
         }
         else
         {
             $_SESSION['User'] = $row["username"];
-            $_Session['Role'] = $row["Role"];
+            $_SESSION['Role'] = $row["Role"];
             header('Location: clerk.php');
         }
     }
