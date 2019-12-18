@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once "config.php";
+include_once 'config.php';
 
 $message = "";
 $role="";
@@ -38,4 +38,18 @@ if(isset($_POST['loginbtn'])){
 
 }
 
+if(isset($_POST['appointmentbtn'])){
+
+    $txtfullname=$_POST["txtfullname"];
+    $txtNIC=$_POST["txtNIC"]; 
+    $txtcontact=$_POST["txtcontact"];
+    $event_date=$_POST["event_date"]; 
+    $txttime=$_POST["txttime"]; 
+
+    $sql = "INSERT INTO appointment(Name, NIC, Contact, date, time) VALUES ('$txtfullname', '$txtNIC', '$txtcontact', '$event_date', '$txttime');";
+    mysqli_query($conn, $sql);
+    header("Location:clerk.php?sucess");
+}
+
+ 
 ?>
