@@ -96,6 +96,7 @@
           </button>
         </div>
         <div class="modal-body">
+        
         <?php
         $conn = mysqli_connect("localhost", "root", "","hospital_db");
         $query = mysqli_query($conn,"select * from patient_history");
@@ -132,7 +133,38 @@
               //<a href="#" class="card-link">Another link</a>
             echo"</div>";
           echo"</div>";} ?>
+            
         </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#new_history" data-dismiss="modal">new</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal" id="new_history">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">New history</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          
+                        <h6>Symtoms</h6>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                        <h6>Diagnosis</h6>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                        <h6>Change details</h6>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                        <h6>Remarks</h6>
+                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+                        
+                      
+        </div>  
         <div class="modal-footer">
           <button type="button" class="btn btn-primary">Save changes</button>
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
