@@ -2,13 +2,13 @@
 session_start();
 $connect = mysqli_connect("localhost", "root", "", "hmsdb");  
 $query ="SELECT * FROM appointment";  
- $result = mysqli_query($connect, $query);  
+$result = mysqli_query($connect, $query);  
  ?>
 <!DOCTYPE html>  
  <html>  
       <head>  
            <title>Test Table</title>  
-           <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>  
+           <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
            <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
            <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
