@@ -50,6 +50,9 @@ if(isset($_POST['appointmentbtn'])){
     mysqli_query($conn, $sql);
     header("Location:clerk.php?sucess");
 }
-
+if(isset($_POST['tablebtn'])){
+    header("Location:table.php");
+}
  
-?>
+
+
