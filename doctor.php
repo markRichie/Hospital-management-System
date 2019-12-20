@@ -26,6 +26,32 @@
       function al(){
         modal.style.display = "block";
       }
+      function tr(uid){
+        //alert("voila")
+        window.location.href="http://localhost/MSS/patients_history.php?id="+uid;
+      }
+      function insertParam(key, value)
+      {
+        key = encodeURI(key); value = encodeURI(value);
+        var kvp = document.location.search.substr(1).split('&');
+
+        var i=kvp.length; var x; while(i--) 
+        {
+            x = kvp[i].split('=');
+
+            if (x[0]==key)
+            {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+
+        if(i<0) {kvp[kvp.length] = [key,value].join('=');}
+
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join('&'); 
+      }
     </script>
   </head>
   <body>
@@ -67,7 +93,9 @@
         <?php
 
           $conn = mysqli_connect("localhost", "root", "","hospital_db");
-          $query = mysqli_query($conn,"select * from patient");
+          $query = mysqli_query($conn,"select * from patient where NIC in (select NIC from appointment where d_id=1)");
+          //echo $query;
+          
 
           $num = 1;
           while ($row = mysqli_fetch_array($query)) {
@@ -75,7 +103,10 @@
               echo"<td>".$num."</td>";
               echo"<td>".$row['name']."</td>";
               echo"<td>".$row['age']."</td>";
-              echo"<td><button type='button' class='btn btn-info' data-toggle='modal' data-target='#patientModal'>view history</button></td>";
+              echo"<form method='post' action=".$_SERVER['PHP_SELF'].">";
+              echo"<input type='hidden' id=".$num." value=".$num.">";
+              echo"<td><button type='button' id=".$row['NIC']." class='btn btn-info' onclick='tr(this.id)'>view history</button></td>";
+              echo"</form>";
             echo"</tr>";
             $num++;
           }
@@ -83,21 +114,22 @@
       </tbody>
     </table> 
   </div>
-  
-  
+ <script></script>
   
   <div class="modal" id="patientModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Patient history</h5>
+          <h5 class="modal-title">Patient history<?php echo $myPhpVar= $_COOKIE['myJavascriptVar']; ?></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
         <div class="modal-body">
+          <input type="text" class="form-control" id="recipient-name">
         
         <?php
+        $id = intval($_GET['id']);
         $conn = mysqli_connect("localhost", "root", "","hospital_db");
         $query = mysqli_query($conn,"select * from patient_history");
 
@@ -106,7 +138,7 @@
             echo"<div class='card-body'>";
               echo"<table style = 'width:100%;'>";
                 echo"<tr>";
-                  echo"<th>Date</th>";
+                  echo"<th>".$id."</th>";
                   echo"<td>".$row['date_Time']."</td>";
                 echo"</tr>";
                 echo"<tr>";
@@ -143,35 +175,38 @@
     </div>
   </div>
 
-  <div class="modal" id="new_history">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title">New history</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          
-                        <h6>Symtoms</h6>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                        <h6>Diagnosis</h6>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                        <h6>Change details</h6>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
-                        <h6>Remarks</h6>
-                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+
+  <form class="form-group" action="functions.php"  method="POST">
+    <div class="modal" id="new_history">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">New history</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            
+                          <h6>Symtoms</h6>
+                          <textarea class="form-control" name="sytm" id="exampleTextarea" rows="3"></textarea>
+                          <h6>Diagnosis</h6>
+                          <textarea class="form-control" name="dia" id="exampleTextarea" rows="3"></textarea>
+                          <h6>Change details</h6>
+                          <textarea class="form-control" name="c_d" id="exampleTextarea" rows="3"></textarea>
+                          <h6>Remarks</h6>
+                          <textarea class="form-control" name="rmks" id="exampleTextarea" rows="3"></textarea>
+                          
                         
-                      
-        </div>  
-        <div class="modal-footer">
-          <button type="button" class="btn btn-primary">Save changes</button>
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>  
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary" name="add_history">Save changes</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          </div>
         </div>
       </div>
     </div>
-  </div>
+  </form>
   
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

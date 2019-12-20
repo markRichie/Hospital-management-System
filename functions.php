@@ -38,4 +38,21 @@ if(isset($_POST['loginbtn'])){
 
 }
 
+if(isset($_POST['add_history'])){
+
+    $symtoms=$_POST["sytm"];
+    $diagnosis=$_POST["dia"];
+    $change_d=$_POST["c_d"];
+    $remarks=$_POST["rmks"];
+
+    $query= "INSERT INTO Customers (CustomerName, ContactName, Address, City, PostalCode, Country)
+    VALUES ('$symtoms', '$diagnosis', '$change_d', '$remarks')";
+    $result =mysqli_query($conn,$query);
+}
+
+
+/*if(isset($_POST['yt'])){
+    header('Location: doctor.php');
+}*/
+  
 ?>
