@@ -120,7 +120,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                
+                            <?php echo"<input type='hidden' name='nic' value='$somevar'>"; ?>
                             <h6>Symtoms</h6>
                             <textarea class="form-control" name="sytm" id="exampleTextarea" rows="3"></textarea>
                             <h6>Diagnosis</h6>
