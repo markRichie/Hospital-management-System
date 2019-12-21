@@ -128,7 +128,10 @@
                             <h6>Change details</h6>
                             <textarea class="form-control" name="c_d" id="exampleTextarea" rows="3"></textarea>
                             <h6>Remarks</h6>
-                            <textarea class="form-control" name="rmks" id="exampleTextarea" rows="3"></textarea>
+                            <textarea class="form-control" name="rmks" id="exampleTextarea" rows="3"></textarea><br>
+                            <h6>Reports</h6>
+                            <input type="text" class="form-control" id="staticEmail" placeholder="report type">
+                            <button type="button" class="btn btn-primary" name="add_history" style="margin-top:5px;">request</button>
                             
                             
             </div>  
