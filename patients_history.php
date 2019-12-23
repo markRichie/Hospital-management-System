@@ -1,3 +1,7 @@
+<?php 
+session_start();
+echo $_SESSION['color']; ?> 
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -130,8 +134,8 @@
                             <h6>Remarks</h6>
                             <textarea class="form-control" name="rmks" id="exampleTextarea" rows="3"></textarea><br>
                             <h6>Reports</h6>
-                            <input type="text" class="form-control" id="staticEmail" placeholder="report type">
-                            <button type="button" class="btn btn-primary" name="add_history" style="margin-top:5px;">request</button>
+                            <input type="text" class="form-control" name="rType" id="staticEmail" placeholder="report type">
+                  
                             
                             
             </div>  

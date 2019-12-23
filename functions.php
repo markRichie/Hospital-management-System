@@ -9,7 +9,7 @@ if(isset($_POST['loginbtn'])){
     $username=$_POST["txtusername"];
     $password=$_POST["txtpassword"];
     
-    $query= "SELECT * FROM multilogin WHERE username='$username' 
+    $query= "SELECT * FROM login WHERE username='$username' 
     AND password='$password'";
     $result =mysqli_query($conn,$query);
 
@@ -17,19 +17,20 @@ if(isset($_POST['loginbtn'])){
     {
         while($row =mysqli_fetch_assoc($result))
         {
-            if($row["Role"] == "admin")
+
+            if($row["role"] == "doctor")
         {
-           $_SESSION['User'] = $row["username"];
-           $_SESSION['Role'] = $row["Role"];
-           header('Location: admin.php');
+           $_SESSION['idi'] = $row["id"];
+           $_SESSION['role'] = $row["role"];
+           header('Location: appointment.php');
         }
-        else
+        elseif($row["role"] == "front office clerk")
         {
-            $_SESSION['User'] = $row["username"];
-            $_SESSION['Role'] = $row["Role"];
-            header('Location: clerk.php');
+            //$_SESSION['idi'] = $row["username"];
+            $_SESSION['role'] = $row["role"];
+            header('Location: appointment.php');
         }
-    }
+        }
     
     }
     else {
@@ -46,8 +47,9 @@ if(isset($_POST['add_history'])){
     $diagnosis=$_POST["dia"];
     $change_d=$_POST["c_d"];
     $remarks=$_POST["rmks"];
+    $report = $_POST["rType"];
 
-    $query= "INSERT INTO `patient_history` (`NIC`, `symtoms`, `Diagnosis`, `change details`, `remarks`, `r_id`, `p_id`) VALUES ('$nn', '$symtoms', '$diagnosis', '$change_d', '$remarks', NULL, NULL);";
+    $query= "INSERT INTO `patient_history` (`NIC`, `symtoms`, `Diagnosis`, `change details`, `remarks`, `r_id`, `p_id`, `r_type`) VALUES ('$nn', '$symtoms', '$diagnosis', '$change_d', '$remarks', NULL, NULL, '$report');";
     $result =mysqli_query($conn,$query);
 
     if($result){

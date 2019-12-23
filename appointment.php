@@ -1,3 +1,9 @@
+<?php
+// Start the session
+session_start();
+$id =  $_SESSION["idi"];
+$rle = $_SESSION["role"];
+?>
 <!doctype html>
 <html lang="en">
   <head>
@@ -75,8 +81,16 @@
   <div class="headg" >
     <h1>Appointments</h1>
     <div class="alert alert-dismissible alert-info">
-    <strong>Welcome Doctor!</strong>
-    <p>Total number of Appointments: </p>
+    <?php
+      if($rle == "doctor"){
+        echo"<strong>Welcome Doctor!</strong>
+        <p>Total number of Appointments: </p>";
+      }
+      else{
+        echo"<strong>Welcome clerk!</strong>";
+      }
+    ?>
+    
     </div>
 
     <table class="table table-hover">
@@ -85,30 +99,54 @@
           <th scope="col">Patient no</th>
           <th scope="col">Patient Name</th>
           <th scope="col">Patient age</th>
-          <th scope="col">history</th>
+          <?php if($rle == "doctor"){
+              echo "<th scope='col'>history</th>";
+          }
+          ?>
         </tr>
       </thead>
       <!-- replace php code with config when common database-->
       <tbody>
         <?php
 
-          $conn = mysqli_connect("localhost", "root", "","hospital_db");
-          $query = mysqli_query($conn,"select * from patient where NIC in (select NIC from appointment where d_id=1)");
-          //echo $query;
-          
+          if($rle == "doctor"){
+              $conn = mysqli_connect("localhost", "root", "","hospital_db");
+              $query = mysqli_query($conn,"select * from patient where NIC in (select NIC from appointment where d_id='$id')");
+              //echo $query;
+              
 
-          $num = 1;
-          while ($row = mysqli_fetch_array($query)) {
-            echo"<tr>";
-              echo"<td>".$num."</td>";
-              echo"<td>".$row['name']."</td>";
-              echo"<td>".$row['age']."</td>";
-              echo"<form method='post' action=".$_SERVER['PHP_SELF'].">";
-              echo"<input type='hidden' id=".$num." value=".$num.">";
-              echo"<td><button type='button' id=".$row['NIC']." class='btn btn-info' onclick='tr(this.id)'>view history</button></td>";
-              echo"</form>";
-            echo"</tr>";
-            $num++;
+              $num = 1;
+              while ($row = mysqli_fetch_array($query)) {
+                echo"<tr>";
+                  echo"<td>".$num."</td>";
+                  echo"<td>".$row['name']."</td>";
+                  echo"<td>".$row['age']."</td>";
+                  echo"<form method='post' action=".$_SERVER['PHP_SELF'].">";
+                  echo"<input type='hidden' id=".$num." value=".$num.">";
+                  echo"<td><button type='button' id=".$row['NIC']." class='btn btn-info' onclick='tr(this.id)'>view history</button></td>";
+                  echo"</form>";
+                echo"</tr>";
+                $num++;
+              }
+          }elseif($rle == "front office clerk"){
+            $conn = mysqli_connect("localhost", "root", "","hospital_db");
+            $query = mysqli_query($conn,"select * from patient where NIC in (select NIC from appointment where d_id='$id')");
+            //echo $query;
+            
+
+            $num = 1;
+            while ($row = mysqli_fetch_array($query)) {
+              echo"<tr>";
+                echo"<td>".$num."</td>";
+                echo"<td>".$row['name']."</td>";
+                echo"<td>".$row['age']."</td>";
+                echo"<form method='post' action=".$_SERVER['PHP_SELF'].">";
+                //echo"<input type='hidden' id=".$num." value=".$num.">";
+                //echo"<td><button type='button' id=".$row['NIC']." class='btn btn-info' onclick='tr(this.id)'>view history</button></td>";
+                echo"</form>";
+              echo"</tr>";
+              $num++;
+            }
           }
         ?>
       </tbody>
