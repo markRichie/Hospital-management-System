@@ -1,6 +1,7 @@
 <?php 
 session_start();
-echo $_SESSION['color']; ?> 
+//echo $_SESSION['color']; 
+?> 
 
 <!doctype html>
 <html lang="en">

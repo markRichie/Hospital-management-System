@@ -3,6 +3,8 @@
 session_start();
 $id =  $_SESSION["idi"];
 $rle = $_SESSION["role"];
+
+include "new_appointment.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -26,6 +28,9 @@ $rle = $_SESSION["role"];
       }
       #ph{
         margin-top: 5px;
+      }
+      #nw{
+        margin-bottom: 10px;
       }
     </style>
     <script>
@@ -84,14 +89,15 @@ $rle = $_SESSION["role"];
     <?php
       if($rle == "doctor"){
         echo"<strong>Welcome Doctor!</strong>
-        <p>Total number of Appointments: </p>";
+        <p>Total number of Appointments: </p>  </div>";
       }
       else{
-        echo"<strong>Welcome clerk!</strong>";
+        echo"<strong>Welcome clerk!</strong>  </div>";
+        echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_history'>New</button>";
       }
     ?>
     
-    </div>
+   
 
     <table class="table table-hover">
       <thead>
