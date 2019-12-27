@@ -1,3 +1,8 @@
+<?php 
+session_start();
+//echo $_SESSION['color']; 
+$rle = $_SESSION["role"];
+?> 
 <!doctype html>
 <html lang="en">
   <head>
@@ -59,7 +64,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" >Aeso Hospital</a>
+    <h5 style="color: #808281;">Aeso Hospital</h5>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -105,7 +110,10 @@
           while ($row = mysqli_fetch_array($query)) {
             echo"<tr>";
               echo"<td>".$num."</td>";
-              echo"<td>".$row['NIC']."</td>";
+              $nme = $row['NIC'];
+              $query1 = mysqli_query($conn,"select * from patient where NIC = '$nme'");
+              $row1 = mysqli_fetch_array($query1);
+              echo"<td>".$row1['name']."</td>";
               echo"<td>".$row['r_type']."</td>";
               echo"<form method='post' action=".$_SERVER['PHP_SELF'].">";
               echo"<input type='hidden' id=".$num." value=".$num.">";

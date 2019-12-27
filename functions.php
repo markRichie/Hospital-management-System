@@ -20,17 +20,24 @@ if(isset($_POST['loginbtn'])){
         {
 
             if($row["role"] == "doctor")
-        {
-           $_SESSION['idi'] = $row["id"];
-           $_SESSION['role'] = $row["role"];
-           header('Location: appointment.php');
-        }
-        elseif($row["role"] == "front office clerk")
-        {
-            //$_SESSION['idi'] = $row["username"];
+            {
+            $_SESSION['idi'] = $row["id"];
             $_SESSION['role'] = $row["role"];
             header('Location: appointment.php');
-        }
+            }
+            elseif($row["role"] == "front office clerk")
+            {
+                //$_SESSION['idi'] = $row["username"];
+                $_SESSION['role'] = $row["role"];
+                header('Location: appointment.php');
+            }
+            elseif($row["role"] == "lab_technician")
+            {
+                //$_SESSION['idi'] = $row["username"];
+                $_SESSION['role'] = $row["role"];
+                $_SESSION['t_id'] = $row["id"];
+                header('Location: request_reports.php');
+            }
         }
     
     }
@@ -62,5 +69,26 @@ if(isset($_POST['add_history'])){
 /*if(isset($_POST['yt'])){
     header('Location: doctor.php');
 }*/
+
+if(isset($_POST['add_report'])){
+    $nn=$_POST["nic"];
+    $loctn =  "Location: http://localhost/MSS/request_reports.php";
+    $typ = $_POST["type"];
+    $results=$_POST["rslts"];
+    $rdate=$_POST["r_date"];
+    $tdate=$_POST["t_date"];
+    $rmks=$_POST["remarks"];
+    $fs=$_POST["fees"];
+    $lnk = $_POST["link"];
+    $tid = $_POST["td"];
+
+
+    $query= "INSERT INTO `report` (`type`, `results`, `s_received_date`, `s_tested_date`, `technician_remarks`, `fees`, `link_to_softcopy`, `t_id`, `NIC`) VALUES ('$typ', '$results', '$rdate', '$tdate', '$rmks', '$fs', '$lnk', '$tid', '$nn');";
+    $result =mysqli_query($conn,$query);
+
+    if($result){
+        header($loctn);
+    }
+}
   
 ?>

@@ -1,8 +1,11 @@
 <?php
 // Start the session
 session_start();
-$id =  $_SESSION["idi"];
 $rle = $_SESSION["role"];
+
+if ($rle == "doctor"){
+  $id =  $_SESSION["idi"];
+}
 
 include "new_appointment.php";
 ?>
@@ -31,6 +34,13 @@ include "new_appointment.php";
       }
       #nw{
         margin-bottom: 10px;
+      }
+      #sr{
+        margin-right: 10px;
+      }
+      #ct{
+        overflow: hidden;
+        width: 100%;
       }
     </style>
     <script>
@@ -67,22 +77,22 @@ include "new_appointment.php";
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" >Aeso Hospital</a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
+      <h5 style="color: #808281;">Asceso Hospitals</h5>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-    <div class="collapse navbar-collapse" id="navbarColor03">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
-        </li>
-      </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-info my-2 my-sm-0" type="submit">Sign out</button>
-      </form>
-    </div>
-  </nav>
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <button class="btn btn-info my-2 my-sm-0" type="submit">Sign out</button>
+          </form>
+        </div>
+    </nav>
   <div class="headg" >
     <h1>Appointments</h1>
     <div class="alert alert-dismissible alert-info">
@@ -94,6 +104,7 @@ include "new_appointment.php";
       else{
         echo"<strong>Welcome clerk!</strong>  </div>";
         echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_history'>New</button>";
+       
       }
     ?>
     
@@ -105,6 +116,10 @@ include "new_appointment.php";
           <th scope="col">Patient no</th>
           <th scope="col">Patient Name</th>
           <th scope="col">Patient age</th>
+          <?php if($rle == "front office clerk"){
+              echo "<th scope='col'>doctor</th>";
+          }
+          ?>
           <?php if($rle == "doctor"){
               echo "<th scope='col'>history</th>";
           }
@@ -136,7 +151,7 @@ include "new_appointment.php";
               }
           }elseif($rle == "front office clerk"){
             $conn = mysqli_connect("localhost", "root", "","hospital_db");
-            $query = mysqli_query($conn,"select * from patient where NIC in (select NIC from appointment where d_id='$id')");
+            $query = mysqli_query($conn,"select * from patient where NIC in (select NIC from appointment)");
             //echo $query;
             
 
@@ -146,6 +161,13 @@ include "new_appointment.php";
                 echo"<td>".$num."</td>";
                 echo"<td>".$row['name']."</td>";
                 echo"<td>".$row['age']."</td>";
+                
+                $nnic = $row['NIC'];
+                $conn1 = mysqli_connect("localhost", "root", "","hospital_db");
+                $query1 = mysqli_query($conn,"select * from doctor where d_id in (select d_id from appointment where NIC = '$nnic')");
+                $row1 = mysqli_fetch_array($query1);
+
+                echo"<td>".$row1['name']."</td>";
                 echo"<form method='post' action=".$_SERVER['PHP_SELF'].">";
                 //echo"<input type='hidden' id=".$num." value=".$num.">";
                 //echo"<td><button type='button' id=".$row['NIC']." class='btn btn-info' onclick='tr(this.id)'>view history</button></td>";

@@ -29,12 +29,46 @@ session_start();
       #nw{
         margin-bottom: 20px;
       }
+      #qty{
+        width: 50%;
+        margin-left: 20px;
+      }
     </style>
     <script>
       function al(){
         modal.style.display = "block";
       }
+      function tr(){
+        //alert("voila")
+      var url_string = window.location.href;
+      var url = new URL(url_string);
+      var c = url.searchParams.get("id");
+      console.log(c);
 
+        window.location.href="http://localhost/MSS/reports?id="+c;
+      }
+      function insertParam(key, value)
+      {
+        key = encodeURI(key); value = encodeURI(value);
+        var kvp = document.location.search.substr(1).split('&');
+
+        var i=kvp.length; var x; while(i--) 
+        {
+            x = kvp[i].split('=');
+
+            if (x[0]==key)
+            {
+                x[1] = value;
+                kvp[i] = x.join('=');
+                break;
+            }
+        }
+
+        if(i<0) {kvp[kvp.length] = [key,value].join('=');}
+
+        //this will reload the page, it's likely better to store this until finished
+        document.location.search = kvp.join('&'); 
+      }
     </script>
   </head>
   <body>
@@ -53,7 +87,7 @@ session_start();
     
     ?>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" >Aeso Hospital</a>
+    <h5 style="color: #808281;">Asceso Hospitals</h5>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -77,6 +111,7 @@ session_start();
     </div>
     
     <button type="button" id="nw" class="btn btn-info" data-toggle="modal" data-target="#new_history">New</button>
+    <button type="button"  id="nw" class="btn btn-info" onclick="tr()">View reports</button>
 
         <table class="table table-hover">
         <thead>
@@ -135,7 +170,14 @@ session_start();
                             <h6>Remarks</h6>
                             <textarea class="form-control" name="rmks" id="exampleTextarea" rows="3"></textarea><br>
                             <h6>Reports</h6>
-                            <input type="text" class="form-control" name="rType" id="staticEmail" placeholder="report type">
+                            <input type="text" class="form-control" name="rType" id="staticEmail" placeholder="report type"><br>
+                            <h6>Prescription</h6>
+                            <table>
+                            <tr>
+                            <td><input type="text" class="form-control" name="rType" id="med" placeholder="medicine"></td>
+                            <td><input type="text" class="form-control" name="uop" id="qty" placeholder="qty"></td>
+                            </tr>
+                            </table>
                   
                             
                             

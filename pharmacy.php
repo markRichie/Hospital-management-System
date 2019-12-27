@@ -1,9 +1,6 @@
 <?php 
 session_start();
-
-$somevar = $_GET["id"];
-$rle = $_SESSION["t_id"];
-$prsn = $_SESSION["role"];
+//echo $_SESSION['color']; 
 ?> 
 
 <!doctype html>
@@ -77,47 +74,41 @@ $prsn = $_SESSION["role"];
         </div>
     </nav>
   <div class="headg" >
-    <h1>Reports</h1>
+    <h1>Patients History</h1>
     <div class="alert alert-dismissible alert-info">
-    <strong>welcome!</strong>
-    <p></p>
+    <strong>Name : </strong>
+    <p>Age : </p>
     </div>
     
-    <?php
-    if($prsn == "lab_technician"){
-    echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_history'>New</button>";
-    }
-    ?>
+    <button type="button" id="nw" class="btn btn-info" data-toggle="modal" data-target="#new_history">New</button>
 
         <table class="table table-hover">
         <thead>
             <tr>
-            <th scope="col">no</th>
-            <th scope="col">Type</th>
-            <th scope="col">results</th>
-            <th scope="col">sample received date</th>
-            <th scope="col">sample tested date</th>
+            <th scope="col">num</th>
+            <th scope="col">Date</th>
+            <th scope="col">Symtoms</th>
+            <th scope="col">Diagnosis</th>
+            <th scope="col">Change details</th>
             <th scope="col">Remarks</th>
-            <th scope="col">link</th>
             </tr>
         </thead>
         <!-- replace php code with config when common database-->
         <tbody>
             <?php
             //$somevar = "123456789v";
-            $conn = mysqli_connect("localhost", "root", "","hospital_db");
-            $query = mysqli_query($conn,"select * from report");
+            //$conn = mysqli_connect("localhost", "root", "","hospital_db");
+            $query = mysqli_query($conn,"select * from patient_history where NIC='$somevar'");
 
             $num = 1;
             while ($row = mysqli_fetch_array($query)) {
                 echo"<tr>";
                 echo"<td>".$num."</td>";
-                echo"<td>".$row['type']."</td>";
-                echo"<td>".$row['results']."</td>";
-                echo"<td>".$row['s_received_date']."</td>";
-                echo"<td>".$row['s_tested_date']."</td>";
-                echo"<td>".$row['technician_remarks']."</td>";
-                echo"<td>".$row['link_to_softcopy']."</td>";
+                echo"<td>".$row['date_Time']."</td>";
+                echo"<td>".$row['symtoms']."</td>";
+                echo"<td>".$row['Diagnosis']."</td>";
+                echo"<td>".$row['change details']."</td>";
+                echo"<td>".$row['remarks']."</td>";
                 echo"</tr>";
                 $num++;
             }
@@ -132,33 +123,36 @@ $prsn = $_SESSION["role"];
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title">New report</h5>
+                <h5 class="modal-title">New record</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
                 </button>
             </div>
             <div class="modal-body">
-                            <?php echo"<input type='hidden' name='nic' value='$somevar'>";
-                                  echo"<input type='hidden' name='td' value='$rle'>"; ?>
-                            <h6>Type</h6>
-                            <textarea class="form-control" name="type" id="exampleTextarea" rows="2"></textarea>
-                            <h6>results</h6>
-                            <textarea class="form-control" name="rslts" id="exampleTextarea" rows="3"></textarea>
-                            <h6>Sample received Date</h6>
-                            <input type="text" class="form-control" name="r_date" id="staticEmail" placeholder="YYYY-MM-DD" ><br>
-                            <h6>Sample Tested Date</h6>
-                            <input type="text" class="form-control" name="t_date" id="staticEmail" placeholder="YYYY-MM-DD" ><br>
+                            <?php echo"<input type='hidden' name='nic' value='$somevar'>"; ?>
+                            <h6>Symtoms</h6>
+                            <textarea class="form-control" name="sytm" id="exampleTextarea" rows="3"></textarea>
+                            <h6>Diagnosis</h6>
+                            <textarea class="form-control" name="dia" id="exampleTextarea" rows="3"></textarea>
+                            <h6>Change details</h6>
+                            <textarea class="form-control" name="c_d" id="exampleTextarea" rows="3"></textarea>
                             <h6>Remarks</h6>
-                            <input type="text" class="form-control" name="remarks" id="staticEmail" placeholder="report type"><br>
-                            <h6>Fees</h6>
-                            <input type="text" class="form-control" name="fees" id="staticEmail" placeholder="report type"><br>
-                            <h6>link to softcopy</h6>
-                            <input type="text" class="form-control" name="link" id="staticEmail" ><br>
+                            <textarea class="form-control" name="rmks" id="exampleTextarea" rows="3"></textarea><br>
+                            <h6>Reports</h6>
+                            <input type="text" class="form-control" name="rType" id="staticEmail" placeholder="report type"><br>
+                            <h6>Prescription</h6>
+                            <table>
+                            <tr>
+                            <td><input type="text" class="form-control" name="rType" id="med" placeholder="medicine"></td>
+                            <td><input type="text" class="form-control" name="uop" id="qty" placeholder="qty"></td>
+                            </tr>
+                            </table>
+                  
                             
                             
             </div>  
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" name="add_report">Save changes</button>
+                <button type="submit" class="btn btn-primary" name="add_history">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </div>
