@@ -90,5 +90,22 @@ if(isset($_POST['add_report'])){
         header($loctn);
     }
 }
+
+if(isset($_POST['del'])){
+    //$nn=$_POST["nic"];
+    $loctn =  "Location: http://localhost/MSS/pharmacy.php";
+    //$lnk = $_POST["link"];
+    $mid = $_POST["medi"];
+    //echo $tid;
+
+    $query= "DELETE FROM medicine WHERE m_id = '$mid'";
+    $result =mysqli_query($conn,$query);
+
+    if($result){
+        header($loctn);
+    }
+}
+
+
   
 ?>
