@@ -1,5 +1,8 @@
 <?php
-session_destroy();
+if(isset($_SESSION['role'])){
+    session_destroy();
+}
+
 session_start();
 require_once "config.php";
 
@@ -38,6 +41,13 @@ if(isset($_POST['loginbtn'])){
                 $_SESSION['t_id'] = $row["id"];
                 header('Location: request_reports.php');
             }
+            elseif($row["role"] == "pharmacist")
+            {
+                //$_SESSION['idi'] = $row["username"];
+                $_SESSION['role'] = $row["role"];
+                $_SESSION['t_id'] = $row["id"];
+                header('Location: pharmacy.php');
+            }
         }
     
     }
@@ -48,6 +58,7 @@ if(isset($_POST['loginbtn'])){
 }
 
 if(isset($_POST['add_history'])){
+    echo "voila";
     $nn=$_POST["nic"];
     $loctn =  "Location: http://localhost/MSS/patients_history.php?id={$nn}";
     $nic = "123456789v";
@@ -57,11 +68,15 @@ if(isset($_POST['add_history'])){
     $remarks=$_POST["rmks"];
     $report = $_POST["rType"];
 
-    $query= "INSERT INTO `patient_history` (`NIC`, `symtoms`, `Diagnosis`, `change details`, `remarks`, `r_id`, `p_id`, `r_type`) VALUES ('$nn', '$symtoms', '$diagnosis', '$change_d', '$remarks', NULL, NULL, '$report');";
+    $query= "INSERT INTO `patient_history` (`NIC`, `symtoms`, `Diagnosis`, `change details`, `remarks`, `r_type`) VALUES ('$nn', '$symtoms', '$diagnosis', '$change_d', '$remarks','$report');";
     $result =mysqli_query($conn,$query);
 
     if($result){
+        echo "insert";
         header($loctn);
+    }
+    else{
+        echo mysqli_error($conn);
     }
 }
 
@@ -82,11 +97,15 @@ if(isset($_POST['add_report'])){
     $lnk = $_POST["link"];
     $tid = $_POST["td"];
 
+    $med = $_POST['mt'];
+    $qty = $_POST['qt'];
 
     $query= "INSERT INTO `report` (`type`, `results`, `s_received_date`, `s_tested_date`, `technician_remarks`, `fees`, `link_to_softcopy`, `t_id`, `NIC`) VALUES ('$typ', '$results', '$rdate', '$tdate', '$rmks', '$fs', '$lnk', '$tid', '$nn');";
+    $query= "INSERT INTO `presciption` (`NIC`,`medicine`, `qty`) VALUES ('$nn','$med', '$qty');";
     $result =mysqli_query($conn,$query);
+    $result1=mysqli_query($conn,$query);
 
-    if($result){
+    if($result1){
         header($loctn);
     }
 }

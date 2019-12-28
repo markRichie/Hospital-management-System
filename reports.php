@@ -72,7 +72,7 @@ $prsn = $_SESSION["role"];
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-info my-2 my-sm-0" type="submit">Sign out</button>
+            <button class="btn btn-info my-2 my-sm-0">Sign out</button>
           </form>
         </div>
     </nav>

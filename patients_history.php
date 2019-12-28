@@ -110,7 +110,7 @@ session_start();
     echo"<p>Age : ".$age."</p>"; ?>
     </div>
     
-    <button type="button" id="nw" class="btn btn-info" data-toggle="modal" data-target="#new_history">New</button>
+    <button type="button" id="nw" class="btn btn-info" data-toggle="modal" data-target="#tst">New</button>
     <button type="button"  id="nw" class="btn btn-info" onclick="tr()">View reports</button>
 
         <table class="table table-hover">
@@ -150,7 +150,7 @@ session_start();
     
 
     <form class="form-group" action="functions.php"  method="POST">
-        <div class="modal" id="new_history">
+        <div class="modal" id="tst">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
             <div class="modal-header">
@@ -174,8 +174,20 @@ session_start();
                             <h6>Prescription</h6>
                             <table>
                             <tr>
-                            <td><input type="text" class="form-control" name="rType" id="med" placeholder="medicine"></td>
-                            <td><input type="text" class="form-control" name="uop" id="qty" placeholder="qty"></td>
+                            <td><input type="text" class="form-control" name="mt" id="med" placeholder="medicine"></td>
+                            <td><input type="text" class="form-control" name="qt" id="qty" placeholder="qty"></td>
+                            </tr>
+                            <tr>
+                            <td><input type="text" class="form-control" name="mt1"  id="med" placeholder="medicine"></td>
+                            <td><input type="text" class="form-control" name="qt1" id="qty" placeholder="qty"></td>
+                            </tr>
+                            <tr>
+                            <td><input type="text" class="form-control" name="mt2"  id="med" placeholder="medicine"></td>
+                            <td><input type="text" class="form-control" name="qt2" id="qty" placeholder="qty"></td>
+                            </tr>
+                            <tr>
+                            <td><input type="text" class="form-control" name="mt3"  id="med" placeholder="medicine"></td>
+                            <td><input type="text" class="form-control" name="qt3" id="qty" placeholder="qty"></td>
                             </tr>
                             </table>
                   

@@ -41,7 +41,7 @@ $(document).ready(function(){
    </script>                    
 
 <div class="modal" id="new_history">
-        <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-dialog " role="document">
             <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">New record</h5>
@@ -50,20 +50,21 @@ $(document).ready(function(){
                 </button>
             </div>
             <div class="modal-body">
-            
 
     <form class="form-group" action="functions.php"  method="POST">
-
-    <table border ="1">
-    <tr>
-        <td><label>Full Name :</label></td>
-        <td><input type="text" name="txtfullname" class="form-control" placeholder="Enter Patients Full Name" required></td>
-    </tr>
-    </table>
+    <label>NIC :</label><br>
+    <input type="text" name="txtNIC" class="form-control" placeholder="Enter Patients NIC"required>
+    <input type="submit" name="chk_nic" class="btn btn-primary" value="search">
+    </form>
+    <form class="form-group" action="functions.php"  method="POST">
+        
+        <label>Full Name :</label>
+        <input type="text" name="txtfullname" class="form-control" placeholder="Enter Patients Full Name" required>
         <label>NIC :</label><br>
         <input type="text" name="txtNIC" class="form-control" placeholder="Enter Patients NIC"required><br>
         <label>Contact Number :</label><br>
         <input type="text" name="txtcontact" class="form-control" placeholder="Enter Patients Phone Number"required><br>
+
         <div class="dates" class="form-control">
         <label>Choose Date</label>
         <input type="text" class="form-control" id="usr1" name="event_date" placeholder="YYYY-MM-DD" autocomplete="off" required>
@@ -76,7 +77,7 @@ $(document).ready(function(){
         <option value="" disabled selected hidden>Select Doctor</option>
             <?php echo $options;?>
         </select>
-        <br>
+        <br><br><br>
         <div class="form-group">
         <input type="submit" name="appointmentbtn" class="btn btn-primary" value="Add">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
