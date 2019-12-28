@@ -1,132 +1,106 @@
 <?php
 session_start();
+if(isset($_SESSION['Role']))
+{
+  if($_SESSION['Role'] != 'admin')
+  {
+    header('Location: clerk.php');
+  }
+}
+else
+{
+  header('Location: index.php');
+}
+
 $connect = mysqli_connect("localhost", "root", "", "hmsdb");  
 $query ="SELECT * FROM `doctor`";  
-$result = mysqli_query($connect, $query);  
-$query = "SELECT * FROM `doctor`";
+
 // for method 
+
 $result2 = mysqli_query($connect, $query);
+
 $options = "";
+
 while($row2 = mysqli_fetch_array($result2))
 {
-    $options = $options."<option>$row2[1]</option>";
+    $options = $options."<option>$row2[0]</option>";
 }
+
+echo !$_SESSION['User'];
 ?>
 <!DOCTYPE HTML>
 <html>
 <head>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
 integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script type="text/javascript" src="lib/bootstrap-datepicker.js"></script>
-<link rel="stylesheet" type="text/css" href="lib/bootstrap-datepicker.css" >
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>  
- <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>            
-<link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css" />  
-<link rel="stylesheet" href="jquery-timepicker/jquery.timepicker.min.css">
-<script src="jquery-timepicker/jquery.timepicker.min.js"></script>
-  <script>
-$(document).ready(function(){
-    $('#time').timepicker({
-        timeFormat: 'h:mm p',
-        interval: 15,
-        minTime: '10',
-        maxTime: '6:00pm',
-        startTime: '10:00',
-        defaultTime: '11',
-        scrollbar: true
-    });
-});</script>
-	<script>
-			$(function() {
-			$('.dates #usr1').datepicker({
-				'format': 'yyyy-mm-dd',
-				'autoclose': true
-			});
-		});
-   </script>      
-     <a class="nav-link" href="logout.php" style="color:white;"><i class="fa fa-signout"
-     aria-hidden="true"></i>Logout</a>
-
 </head>
-<body style="background-color:#3498DB;">
-<div class="container" style="width:350px;margin-top:20px; float:left;" >
-<div class="card">
-<div class="card-body">
-    <form class="form-group" action="functions.php"  method="POST">
-        <label>Full Name :</label><br>
-        <input type="text" name="txtfullname" class="form-control" placeholder="Enter Patients Full Name" required><br>
-        <label>NIC :</label><br>
-        <input type="text" name="txtNIC" class="form-control" placeholder="Enter Patients NIC"required><br>
-        <label>Contact Number :</label><br>
-        <input type="text" name="txtcontact" class="form-control" placeholder="Enter Patients Phone Number"required><br>
-        <div class="dates" class="form-control">
-        <label>Choose Date</label>
-        <input type="text" class="form-control" id="usr1" name="event_date" placeholder="YYYY-MM-DD" autocomplete="off" required>
-        <br>
-        <label>Select Time:</label><br>
-        <input type="text" class="form-control" id="time" name="txttime">
-        <br>
-        <label>Select Doctor:</label><br>
-        <select name="valuedoctors"class="form-control">
-        <option value="" disabled selected hidden>Select Doctor</option>
-            <?php echo $options;?>
-        </select>
-        <br>
-        <label>Doctor ID</label><br>
-        <input type="text" name="txtdocid" class="form-control" placeholder="Enter Doctors ID from the Table"required><br>
-        <div class="dates" class="form-control">
-        <div class="form-group">
-        <input type="submit" name="appointmentbtn" class="btn btn-primary" value="Book Appointment">
-        <input type="submit" name="tablebtn" formnovalidate class="btn btn-primary" value="View Appoinments">
-        </div>
-        </div>
-        </div>    
-    </form>
-    
-</div>
-</div>
-</div>
-<div class="container"  style="margin-top:20px; float:right;">
-   <div class="card">
-<div class="card-body">
-                <h3 align="center">Registered Doctors</h3>  
-
-                     <table id="appointment" class="table table-striped table-bordered">  
-                          <thead>  
-                               <tr>  
-                               <td>Doctor ID</td>  
-                                    <td>Doctor Name</td>  
-                                    <td>Fees</td>  
-                            
-                               
-                           
-                               </tr>  
-                          </thead>  
-                          <?php  
-                          while($row = mysqli_fetch_array($result))  
-                          {  
-                               echo'  
-                               <tr>  
-                               <td>'.$row["d_id"].'</td>  
-                               <td>'.$row["name"].'</td>  
-                               <td>'.$row["fees"].'</td>   
-                               </tr>  
-                               ';  
-                          }  
-                          
-                          ?>  
-                     </table>  
-                </div>  
-           </div>  
-                         </div>
-                         </div>
-
-      </body>  
-      <script>  
- $(document).ready(function(){  
-      $('#appointment').DataTable();  
- });  
- </script>
+<body>
+<div class="jumbotron" style="background:url('images/Adminpanel.jpg') 
+no-repeat;background-size:cover;height:200px;"></div>
+<div class="container-fluid">
+<div class="container-fluid" style="margin-top:50px;">
+    <div class="row">
+  <div class="col-md-4">
+    <div class="list-group" id="list-tab" role="tablist">
+      <a class="list-group-item list-group-item-action active" id="list-doctor-list" data-toggle="list" href="#list-doctor" role="tab" aria-controls="home">Manage Doctor</a>
+      <a class="list-group-item list-group-item-action" id="list-clerk-list" data-toggle="list" href="#list-clerk" role="tab" aria-controls="profile">Manage Clerk</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Prescription</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Doctors Section</a>
+       <a class="list-group-item list-group-item-action" id="list-attend-list" data-toggle="list" href="#list-attend" role="tab" aria-controls="settings">Attendance</a>
+    </div><br>
+  </div>
+  <div class="col-md-8">
+    <div class="tab-content" id="nav-tabContent">
+      <div class="tab-pane fade show active" id="list-doctor" role="tabpanel" aria-labelledby="list-doctor-list">
+        <div class="container-fluid">
+          <div class="card">
+            <div class="card-body">
+              <center><h4>Add Doctor</h4></center><br>
+              <form class="form-group" action="functions.php"  method="POST">
+                <div class="row">
+                  <div class="col-md-4"><label>Full Name:</label></div>
+                  <div class="col-md-8"><input type="text" class="form-control"  name="txtdoc_fname" placeholder="Enter Doctors Full Name"required></div><br><br>
+                  <div class="col-md-4"><label>Username:</label></div>
+                  <div class="col-md-8"><input type="text"  class="form-control" name="txtdoc_username" placeholder="Enter Doctors Username"required></div><br><br>
+                  <div class="col-md-4"><label>Password:</label></div>
+                  <div class="col-md-8"><input type="password" class="form-control"  name="txtdoc_pass" placeholder="Enter Doctors Password"required></div><br><br>
+                  <div class="col-md-4">
+                    <input type="submit" name="btnadd_doc" value="Register Doctor" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btndelete_doc" value="Delete Doctor" class="btn btn-primary" id="inputbtn">
+                  </div>
+                  <div class="col-md-8"></div>                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div><br>
+      </div>
+      <div class="tab-pane fade" id="list-clerk" role="tabpanel" aria-labelledby="list-clerk-list">
+        <div class="card">
+          <div class="card-body">
+          <center><h4>Add Clerk</h4></center><br>
+              <form class="form-group" action="functions.php"  method="POST">
+                <div class="row">
+                  <div class="col-md-4"><label>Full Name:</label></div>
+                  <div class="col-md-8"><input type="text" class="form-control"  name="txtclerk_fname" placeholder="Enter Clerks Full Name"required></div><br><br>
+                  <div class="col-md-4"><label>Username:</label></div>
+                  <div class="col-md-8"><input type="text"  class="form-control" name="txtclerk_username" placeholder="Enter Clerks Username"required></div><br><br>
+                  <div class="col-md-4"><label>Password:</label></div>
+                  <div class="col-md-8"><input type="password" class="form-control"  name="txtclerk_pass" placeholder="Enter Clerks Password"required></div><br><br>
+                  <div class="col-md-4">
+                    <input type="submit" name="btnadd_clerk" value="Register Clerk" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btndelete_clerk" value="Delete Clerk" class="btn btn-primary" id="inputbtn">
+                  </div>
+                  <div class="col-md-8"></div>                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div><br>
+      </div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" 
+integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+   
+</body>
 </html>
