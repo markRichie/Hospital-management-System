@@ -1,4 +1,5 @@
 <?php
+//redoclerk
 session_start();
 $connect = mysqli_connect("localhost", "root", "", "hospital_db");  
 $query ="SELECT * FROM 'front office clerk' ";  
