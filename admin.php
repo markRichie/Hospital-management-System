@@ -80,9 +80,11 @@ no-repeat;background-size:cover;height:200px;"></div>
                 <div class="row">
                   <div class="col-md-4"><label>Full Name:</label></div>
                   <div class="col-md-8"><input type="text" class="form-control"  name="txtclerk_fname" placeholder="Enter Clerks Full Name"required></div><br><br>
-                  <div class="col-md-4">
+                  <div class="col-md-7">
+                  <br>
                     <input type="submit" name="btnadd_clerk" value="Register Clerk" class="btn btn-primary" id="inputbtn">
                     <input type="submit" formnovalidate name="btndelete_clerk" value="Delete Clerk" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btncreateclerk" value="Create Account" class="btn btn-primary" id="inputbtn">
                   </div>
                   <div class="col-md-8"></div>                  
                 </div>
