@@ -48,6 +48,13 @@ if(isset($_POST['loginbtn'])){
                 $_SESSION['t_id'] = $row["id"];
                 header('Location: pharmacy.php');
             }
+            elseif($row["role"] == "admin")
+            {
+                //$_SESSION['idi'] = $row["username"];
+                $_SESSION['role'] = $row["role"];
+                header('Location: admin.php');
+            }
+            
         }
     
     }
@@ -126,5 +133,6 @@ if(isset($_POST['del'])){
 }
 
 
-  
+//buttons call
+
 ?>
