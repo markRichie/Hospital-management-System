@@ -3,13 +3,9 @@
 // Start the session
 session_start();
 $rle = $_SESSION["role"];
-
-if ($rle == "admin"){
-  $id =  $_SESSION["idi"];
+if (!$rle == "admin"){
+ 
 }
-
-include "new_appointment.php";
-
 
 $connect = mysqli_connect("localhost", "root", "", "hospital_db");  
 $query ="SELECT * FROM `doctor`";  
@@ -29,27 +25,72 @@ while($row2 = mysqli_fetch_array($result2))
 <!DOCTYPE HTML>
 <html>
 <head>
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
-integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <!-- Bootstrap CSS -->
+   <link rel="stylesheet" href="css/bootstrap.min.css">
+
+<style>
+  .headg{
+    margin-left: 30px;
+    margin-right: 30px;
+  }
+  h1{
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+  #ph{
+    margin-top: 5px;
+  }
+  #nw{
+    margin-bottom: 10px;
+  }
+  #sr{
+    margin-right: 10px;
+  }
+  #ct{
+    overflow: hidden;
+    width: 100%;
+  }
+
+</style>
+
 </head>
 <body>
-<div class="jumbotron" style="background:url('images/Adminpanel.jpg') 
-no-repeat;background-size:cover;height:200px;"></div>
-<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <h5 style="color: #808281;">Asceso Hospitals</h5>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarColor03">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
+            </li>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+          <a class="btn btn-info my-2 my-sm-0" href="logout.php" role="button">Sign Out</a>            
+
+          </form>
+        </div>
+    </nav>
+
 <div class="container-fluid" style="margin-top:50px;">
-    <div class="row">
+    <div class="row" >
   <div class="col-md-4">
     <div class="list-group" id="list-tab" role="tablist">
-      <a class="list-group-item list-group-item-action active" id="list-doctor-list" data-toggle="list" href="#list-doctor" role="tab" aria-controls="home">Manage Doctor</a>
-      <a class="list-group-item list-group-item-action" id="list-clerk-list" data-toggle="list" href="#list-clerk" role="tab" aria-controls="profile">Manage Clerk</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Prescription</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings">Doctors Section</a>
-       <a class="list-group-item list-group-item-action" id="list-attend-list" data-toggle="list" href="#list-attend" role="tab" aria-controls="settings">Attendance</a>
+      <a class="list-group-item list-group-item-action active" id="list-doctor-list" data-toggle="list" href="#list-doctor" role="tab" aria-controls="home" >Manage Doctor</a>
+      <a class="list-group-item list-group-item-action" id="list-clerk-list" data-toggle="list" href="#list-clerk" role="tab" aria-controls="profile" >Manage Clerk</a>
+      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Manage Pharmacist</a>
+      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings" >Mange Lab Technician</a>
+       <a class="list-group-item list-group-item-action" id="list-attend-list" data-toggle="list" href="#list-attend" role="tab" aria-controls="settings">Manage Customers</a>
     </div><br>
   </div>
   <div class="col-md-8">
     <div class="tab-content" id="nav-tabContent">
-      <div class="tab-pane fade show active" id="list-doctor" role="tabpanel" aria-labelledby="list-doctor-list">
+      <div class="tab-pane fade show active"  id="list-doctor" role="tabpanel" aria-labelledby="list-doctor-list">
         <div class="container-fluid">
           <div class="card">
             <div class="card-body">
@@ -61,9 +102,10 @@ no-repeat;background-size:cover;height:200px;"></div>
                   <div class="col-md-4"><label>Fees:</label></div>
                   <div class="col-md-8"><input type="text"  class="form-control" name="txtdoc_fees" placeholder="Enter Doctors Fees"required></div><br><br>
                   
-                  <div class="col-md-4">
+                  <div class="col-md-7">
                     <input type="submit" name="btnadd_doc" value="Register Doctor" class="btn btn-primary" id="inputbtn">
                     <input type="submit" formnovalidate name="btndelete_doc" value="Delete Doctor" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btncreatedoc" value="Create Account" class="btn btn-primary" id="inputbtn">
                   </div>
                   <div class="col-md-8"></div>                  
                 </div>
@@ -72,7 +114,7 @@ no-repeat;background-size:cover;height:200px;"></div>
           </div>
         </div><br>
       </div>
-      <div class="tab-pane fade" id="list-clerk" role="tabpanel" aria-labelledby="list-clerk-list">
+      <div class="tab-pane fade"  id="list-clerk" role="tabpanel" aria-labelledby="list-clerk-list">
         <div class="card">
           <div class="card-body">
           <center><h4>Add Clerk</h4></center><br>
