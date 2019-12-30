@@ -74,13 +74,23 @@ if(isset($_POST['add_history'])){
     $change_d=$_POST["c_d"];
     $remarks=$_POST["rmks"];
     $report = $_POST["rType"];
+    $numb = rand();
+
+    $med = $_POST['mt'];
+    $qty = $_POST['qt'];
+
 
     $query= "INSERT INTO `patient_history` (`NIC`, `symtoms`, `Diagnosis`, `change details`, `remarks`, `r_type`) VALUES ('$nn', '$symtoms', '$diagnosis', '$change_d', '$remarks','$report');";
+    $query1= "INSERT INTO `presciption` (`NIC`,`medicine`, `qty`, `order_no`) VALUES ('$nn','$med', '$qty', '$numb');";
     $result =mysqli_query($conn,$query);
+    
 
     if($result){
-        echo "insert";
-        header($loctn);
+       $result1 =mysqli_query($conn,$query1);
+       if($result1){
+            header($loctn);
+       }
+        
     }
     else{
         echo mysqli_error($conn);
@@ -104,15 +114,14 @@ if(isset($_POST['add_report'])){
     $lnk = $_POST["link"];
     $tid = $_POST["td"];
 
-    $med = $_POST['mt'];
-    $qty = $_POST['qt'];
+   
 
     $query= "INSERT INTO `report` (`type`, `results`, `s_received_date`, `s_tested_date`, `technician_remarks`, `fees`, `link_to_softcopy`, `t_id`, `NIC`) VALUES ('$typ', '$results', '$rdate', '$tdate', '$rmks', '$fs', '$lnk', '$tid', '$nn');";
-    $query= "INSERT INTO `presciption` (`NIC`,`medicine`, `qty`) VALUES ('$nn','$med', '$qty');";
+    
     $result =mysqli_query($conn,$query);
-    $result1=mysqli_query($conn,$query);
+    //$result1=mysqli_query($conn,$query);
 
-    if($result1){
+    if($result){
         header($loctn);
     }
 }
