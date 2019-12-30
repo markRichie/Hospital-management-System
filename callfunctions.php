@@ -29,6 +29,11 @@ if(isset($_POST['btndelete_doc'])){
     header("Location:delete_doctor.php");
 }
 
+if(isset($_POST['btncreatedoc'])){
+    header("Location:register_doctor.php");
+}
+
+
 //clerk
 if(isset($_POST['btnadd_clerk'])){
 
