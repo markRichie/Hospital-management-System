@@ -126,6 +126,69 @@ session_start();
     </ul>
     <div id="myTabContent" class="tab-content">
       <div class="tab-pane fade show active" id="home">
+
+
+      <table id = "e_table" class="table table-hover">
+        <thead>
+            <tr>
+            <th scope="col">prescription no</th>
+            <th scope="col">NIC</th>
+            <th scope="col">Medicine</th>
+            <th scope="col">qty</th>
+            </tr>
+        </thead>
+        <!-- replace php code with config when common database-->
+        <tbody>
+            <?php
+            //$somevar = "123456789v";
+            $conn = mysqli_connect("localhost", "root", "","hospital_db");
+            $query1 = mysqli_query($conn,"SELECT DISTINCT NIC FROM presciption");
+
+            $i =1;
+            while($row1 = mysqli_fetch_array($query1)){
+            
+            $nicn = $row1['NIC'];
+            
+            //$conn = mysqli_connect("localhost", "root", "","hospital_db");
+            $query = mysqli_query($conn,"select * from presciption where NIC = '$nicn'");
+
+            $num = 1;
+            while ($row = mysqli_fetch_array($query)) {
+                if($num >= 2){
+                  echo"<tr>";
+                  echo"<td></td>";
+                  //echo"<td>".$row['p_id']."</td>";
+                  echo"<td></td>";
+                  echo"<td>".$row['medicine']."</td>";
+                  echo"<td>".$row['qty']."</td>";
+                  echo"</tr>";
+                }
+                else{
+                echo"<tr>";
+                echo"<td>".$i."</td>";
+                //echo"<td>".$row['p_id']."</td>";
+                echo"<td>".$row['NIC']."</td>";
+                echo"<td>".$row['medicine']."</td>";
+                echo"<td>".$row['qty']."</td>";
+                echo"</tr>";
+                }
+                $num++;
+            }
+            echo"<tr>
+            <td></td>
+            <td></td>
+            <td></td>
+            <form action='creat_bill.php'  method='POST'>
+            <input type='hidden' value='$nicn' name='ni'>
+            <td><button class='btn btn-info my-2 my-sm-0' type='submit'>create bill</button></td>
+            </form>
+            </tr>";
+            $i++;
+          }
+            ?>
+        </tbody>
+        </table> 
+
         
       </div>
       <div class="tab-pane fade" id="profile">
