@@ -97,6 +97,19 @@ while ($row = mysqli_fetch_array($query)) {
     $amt = $row['qty'] * $row1['price'];
     $pdf->Cell(34 ,5,$amt,1,1,'R');
 
+    $qqty = ($row1['qty'] - $row['qty']) ;
+    if($qqty < 0){
+        $qqty = 0;
+    }
+
+    $query5 = mysqli_query($conn,"update medicine set qty= '$qqty' where name = '$med'");
+    if($query5){
+
+    }else{
+        mysqli_error($conn);
+    }
+    //$row5 = mysqli_fetch_array($query1);
+
     $ttl = $ttl + $amt;
 }
 

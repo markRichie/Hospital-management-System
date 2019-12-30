@@ -138,19 +138,21 @@ $rle = $_SESSION["role"];
             </div>
             <div class="modal-body">
                 
-                            <h6>Symtoms</h6>
-                            <textarea class="form-control" name="sytm" id="exampleTextarea" rows="3"></textarea>
-                            <h6>Diagnosis</h6>
-                            <textarea class="form-control" name="dia" id="exampleTextarea" rows="3"></textarea>
-                            <h6>Change details</h6>
-                            <textarea class="form-control" name="c_d" id="exampleTextarea" rows="3"></textarea>
-                            <h6>Remarks</h6>
-                            <textarea class="form-control" name="rmks" id="exampleTextarea" rows="3"></textarea>
+                            <h6>Name</h6>
+                            <input type='text' name='name' class='form-control'></input>
+                            <h6>NIC</h6>
+                            <input type='text' name='nic' class='form-control'></input>
+                            <h6>telephone no</h6>
+                            <input type='text' name='telno' class='form-control'></input>
+                            <h6>ward no</h6>
+                            <input type='text' name='wno' class='form-control'></input>
+                            <h6>Bed no</h6>
+                            <input type='text' name='bno' class='form-control'></input>
                             
                             
             </div>  
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" name="add_history">Save changes</button>
+                <button type="submit" class="btn btn-primary" name="new_admission">Save changes</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </div>
