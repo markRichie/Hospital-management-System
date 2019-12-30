@@ -19,7 +19,6 @@ include "new_appointment.php";
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
-    <title>Hello, world!</title>
     <style>
       .headg{
         margin-left: 30px;
@@ -74,6 +73,7 @@ include "new_appointment.php";
         document.location.search = kvp.join('&'); 
       }
     </script>
+    
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -89,7 +89,8 @@ include "new_appointment.php";
             </li>
           </ul>
           <form class="form-inline my-2 my-lg-0">
-            <button class="btn btn-info my-2 my-sm-0" type="submit">Sign out</button>
+          <a class="btn btn-info my-2 my-sm-0" href="logout.php" role="button">Sign Out</a>            
+
           </form>
         </div>
     </nav>
