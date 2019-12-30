@@ -180,7 +180,7 @@ session_start();
             <td></td>
             <form action='creat_bill.php'  method='POST'>
             <input type='hidden' value='$nicn' name='ni'>
-            <td><button class='btn btn-info my-2 my-sm-0' type='submit'>create bill</button></td>
+            <td><button class='btn btn-info my-2 my-sm-0' type='submit'>Invoice</button></td>
             </form>
             </tr>";
             $i++;
@@ -193,7 +193,7 @@ session_start();
       </div>
       <div class="tab-pane fade" id="profile">
 
-        
+      <br><button name='add' id = "nw" class='btn btn-info'>New</button><br>
       <table id = "e_table" class="table table-hover">
         <thead>
             <tr>
@@ -201,6 +201,7 @@ session_start();
             <th scope="col">name</th>
             <th scope="col">quantity</th>
             <th scope="col">price per</th>
+            <th scope="col"></th>
             </tr>
         </thead>
         <!-- replace php code with config when common database-->
@@ -219,7 +220,7 @@ session_start();
                 echo"<td>".$row['price']."</td>";
                 echo"<form class='form-group' action='functions.php'  method='POST'>";
                 $mid = $row['m_id'];
-                echo"<td><button type='submit' name='edit' class='btn btn-info'>edit</button>
+                echo"<td>
                 <input type='hidden' name='medi' value='$mid'>
                 <button type='submit' name='del' class='btn btn-info'>delete</button></td> </form>";
                 echo"</tr>";

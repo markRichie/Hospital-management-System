@@ -84,8 +84,16 @@ while ($row = mysqli_fetch_array($query)) {
     $pdf->Cell(130 ,5,$med,1,0);
     $pdf->Cell(25 ,5,$row['qty'],1,0);
 
+
     $query1 = mysqli_query($conn,"select * from medicine where name = '$med'");
     $row1 = mysqli_fetch_array($query1);
+
+    if($row['qty'] > $row1['qty']){
+        echo"<script>alert('stock not available')
+        window.location.href = 'http://localhost/MSS/pharmacy.php';</script>";
+        
+    }
+
     $amt = $row['qty'] * $row1['price'];
     $pdf->Cell(34 ,5,$amt,1,1,'R');
 
