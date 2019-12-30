@@ -67,7 +67,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
 <div class="container"  style="margin-top:20px; float:right;">
    <div class="card">
 <div class="card-body">
-                <h3 align="center">Registered Doctors</h3>  
+                <h3 align="center">Registered Clerks</h3>  
 
                      <table id="appointment" class="table table-striped table-bordered">  
                           <thead>  
