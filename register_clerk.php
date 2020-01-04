@@ -46,7 +46,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
         <br>
         <label>Select Role :</label><br>
         <select name="clerk_role"class="form-control">
-        <option value="clerk" >front office clerk</option>
+        <option value="clerk" >clerk</option>
         </select>
         <br>
         <label>Clerk Username</label><br>
