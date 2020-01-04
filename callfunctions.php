@@ -70,6 +70,9 @@ if(isset($_POST['registerclerk_btn'])){
 if(isset($_POST['btndelete_lab'])){
     header("Location:delete_labt.php");
 }
+if(isset($_POST['btncreate_lab'])){
+    header("Location:register_labtech.php");
+}
 
 if(isset($_POST['btnadd_lab'])){
 
@@ -77,28 +80,8 @@ if(isset($_POST['btnadd_lab'])){
  
     $sql = "INSERT INTO  `lab_technician`(name) VALUES ('$txtlab_fname');";
     mysqli_query($conn, $sql);
-    header("Location:register_clerk.php");
+    header("Location:register_labtech.php");
 }
 
 
 
-if(isset($_POST['btnlab_delete']))
-{
-    $data = getPosts();
-    $delete_Query = "DELETE FROM `lab_technician` WHERE `t_id` = $data[0]";
-    try{
-        $delete_Result = mysqli_query($connect, $delete_Query);
-        
-        if($delete_Result)
-        {
-            if(mysqli_affected_rows($connect) > 0)
-            {
-                echo 'Data Deleted';
-            }else{
-                echo 'Data Not Deleted';
-            }
-        }
-    } catch (Exception $ex) {
-        echo 'Error Delete '.$ex->getMessage();
-    }
-}
