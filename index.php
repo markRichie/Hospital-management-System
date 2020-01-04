@@ -43,7 +43,7 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
         <label>Username :</label><br>
         <input type="text" name="txtusername" class="form-control" placeholder="Enter Username"><br>
         <label>Password :</label><br>
-        <input type="text" name="txtpassword" class="form-control" placeholder="Enter Password"><br>
+        <input type="password" name="txtpassword" class="form-control" placeholder="Enter Password"><br>
         <p class="text-center" style="color:red"> 
         </p>
         <div class="form-group">
