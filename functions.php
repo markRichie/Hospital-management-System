@@ -28,7 +28,7 @@ if(isset($_POST['loginbtn'])){
             $_SESSION['role'] = $row["role"];
             header('Location: appointment.php');
             }
-            elseif($row["role"] == "front office clerk")
+            elseif($row["role"] == "clerk")
             {
                 //$_SESSION['idi'] = $row["username"];
                 $_SESSION['role'] = $row["role"];
