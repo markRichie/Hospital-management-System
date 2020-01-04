@@ -70,29 +70,28 @@ while($row2 = mysqli_fetch_array($result2))
               <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0">
-          <a class="btn btn-info my-2 my-sm-0" href="logout.php" role="button">Sign Out</a>            
+          <form class="form-inline my-2 my-lg-0" > 
+          <a class="btn btn-info my-2 my-sm-0" href="logout.php" role="button" >Sign Out</a>            
 
           </form>
         </div>
     </nav>
 
-<div class="container-fluid" style="margin-top:50px;">
+<div class="container-fluid" style="margin-top:50px;" >
     <div class="row" >
   <div class="col-md-4">
-    <div class="list-group" id="list-tab" role="tablist">
+    <div class="list-group" id="list-tab" role="tablist"  >
       <a class="list-group-item list-group-item-action active" id="list-doctor-list" data-toggle="list" href="#list-doctor" role="tab" aria-controls="home" >Manage Doctor</a>
-      <a class="list-group-item list-group-item-action" id="list-clerk-list" data-toggle="list" href="#list-clerk" role="tab" aria-controls="profile" >Manage Clerk</a>
-      <a class="list-group-item list-group-item-action" id="list-messages-list" data-toggle="list" href="#list-messages" role="tab" aria-controls="messages">Manage Pharmacist</a>
-      <a class="list-group-item list-group-item-action" id="list-settings-list" data-toggle="list" href="#list-settings" role="tab" aria-controls="settings" >Mange Lab Technician</a>
-       <a class="list-group-item list-group-item-action" id="list-attend-list" data-toggle="list" href="#list-attend" role="tab" aria-controls="settings">Manage Customers</a>
+      <a class="list-group-item list-group-item-action"  id="list-clerk-list" data-toggle="list" href="#list-clerk" role="tab" aria-controls="profile" >Manage Clerk</a>
+      <a class="list-group-item list-group-item-action" id="list-lab-list" data-toggle="list" href="#list-lab" role="tab" aria-controls="messages"> Manage Lab Techniciant</a>
+      <a class="list-group-item list-group-item-action" id="list-pharmacist-list" data-toggle="list" href="#list-pharmacist" role="tab" aria-controls="settings" >Manage Pharmacist</a>
     </div><br>
   </div>
-  <div class="col-md-8">
+  <div class="col-md-8" >
     <div class="tab-content" id="nav-tabContent">
       <div class="tab-pane fade show active"  id="list-doctor" role="tabpanel" aria-labelledby="list-doctor-list">
         <div class="container-fluid">
-          <div class="card">
+          <div class="card" >
             <div class="card-body">
               <center><h4>Add Doctor</h4></center><br>
               <form class="form-group" action="callfunctions.php"  method="POST">
@@ -114,7 +113,7 @@ while($row2 = mysqli_fetch_array($result2))
           </div>
         </div><br>
       </div>
-      <div class="tab-pane fade"  id="list-clerk" role="tabpanel" aria-labelledby="list-clerk-list">
+        <div class="tab-pane fade"  id="list-clerk" role="tabpanel" aria-labelledby="list-clerk-list">
         <div class="card">
           <div class="card-body">
           <center><h4>Add Clerk</h4></center><br>
@@ -127,6 +126,46 @@ while($row2 = mysqli_fetch_array($result2))
                     <input type="submit" name="btnadd_clerk" value="Register Clerk" class="btn btn-primary" id="inputbtn">
                     <input type="submit" formnovalidate name="btndelete_clerk" value="Delete Clerk" class="btn btn-primary" id="inputbtn">
                     <input type="submit" formnovalidate name="btncreateclerk" value="Create Account" class="btn btn-primary" id="inputbtn">
+                  </div>
+                  <div class="col-md-8"></div>                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div><br>
+        <div class="tab-pane fade"  id="list-lab" role="tabpanel" aria-labelledby="list-lab-list">
+        <div class="card">
+          <div class="card-body">
+          <center><h4>Add Lab Technician</h4></center><br>
+              <form class="form-group" action="callfunctions.php"  method="POST">
+                <div class="row">
+                  <div class="col-md-4"><label>Full Name:</label></div>
+                  <div class="col-md-8"><input type="text" class="form-control"  name="txtlab_fname" placeholder="Enter Lab Technicians Full Name"required></div><br><br>
+                  <div class="col-md-7">
+                  <br>
+                    <input type="submit" name="btnadd_lab" value="Register Lab Tech" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btndelete_lab" value="Delete Technician" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btncreate_lab" value="Create Account" class="btn btn-primary" id="inputbtn">
+                  </div>
+                  <div class="col-md-8"></div>                  
+                </div>
+              </form>
+            </div>
+          </div>
+        </div><br>
+        <div class="tab-pane fade"  id="list-pharmacist" role="tabpanel" aria-labelledby="list-pharmacist-list">
+        <div class="card">
+          <div class="card-body">
+          <center><h4>Add Pharmacist</h4></center><br>
+              <form class="form-group" action="callfunctions.php"  method="POST">
+                <div class="row">
+                  <div class="col-md-4"><label>Full Name:</label></div>
+                  <div class="col-md-8"><input type="text" class="form-control"  name="txtphar_fname" placeholder="Enter Pharmacist Full Name"required></div><br><br>
+                  <div class="col-md-7">
+                  <br>
+                    <input type="submit" name="btnadd_phar" value="Register Pharmacist" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btndelete_phar" value="Delete Pharmacist" class="btn btn-primary" id="inputbtn">
+                    <input type="submit" formnovalidate name="btncreate_phar" value="Create Account" class="btn btn-primary" id="inputbtn">
                   </div>
                   <div class="col-md-8"></div>                  
                 </div>
