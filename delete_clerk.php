@@ -45,7 +45,8 @@ if(isset($_POST['delete']))
 <!DOCTYPE Html>
 <html>
     <head>
-    <title>Test Table</title>  
+    <a class="nav-link" href="admin.php" style="color:black;"><i class="fa fa-signout"
+     aria-hidden="true"></i>Back</a>
     
            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>  
            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />  
@@ -62,7 +63,9 @@ if(isset($_POST['delete']))
         <label>Enter Clerk  ID</label><br>
             <input type="text" name="c_idtxt" placeholder="Id" value="  <?php if(isset($d_id)){echo $d_id;}?>"><br><br>
             <div>
-                <input type="submit" name="delete" value="Delete" class="btn btn-primary" onclick="confirmation()"> 
+                <input type="submit" name="delete" value="Delete" class="btn btn-primary">
+                <input type="submit" name="refresh" value="Refresh" class="btn btn-primary" onClick="window.location.href=window.location.href"> 
+
             </div>
         </form>
 </div>
@@ -105,12 +108,5 @@ if(isset($_POST['delete']))
       $('#clerk_table').DataTable();  
  });  
  </script>
- <script>
- function confirmation(){
-    var result = confirm("Are you sure to delete?");
-    if(result){
-        // Delete logic goes here
-    }
-}
-</script>
+
 </html>
