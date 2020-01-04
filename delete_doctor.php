@@ -87,8 +87,7 @@ if(isset($_POST['delete']))
                                <tr>  
                                     <td>'.$row["d_id"].'</td>  
                                     <td>'.$row["name"].'</td>  
-                                    <td>'.$row["fees"].'</td>  
-                                    
+    
                                    
                                </tr>  
                                ';  
