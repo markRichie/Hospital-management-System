@@ -38,24 +38,24 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
     <form class="form-group" action="callfunctions.php"  method="POST">
     <h4 align="center">Create Account</h4>  
     <br>
-        <label>Select Clerk ID :</label><br>
-        <select name="clerk_id"class="form-control">
-        <option value="" disabled selected hidden>Select Clerk ID</option>
+        <label>Select Lab Technician :</label><br>
+        <select name="labt_id"class="form-control">
+        <option value="" disabled selected hidden>Select Lab Technician ID</option>
             <?php echo $labid;?>
         </select>
         <br>
         <label>Select Role :</label><br>
-        <select name="clerk_role"class="form-control">
-        <option value="clerk" >front office clerk</option>
+        <select name="labt_role"class="form-control">
+        <option value="lab_technician">Lab Technician</option>
         </select>
         <br>
-        <label>Clerk Username</label><br>
-        <input type="text" name="txtclerk_username" class="form-control" placeholder="Clerk Username"required><br>
+        <label>Lab Technician Username</label><br>
+        <input type="text" name="txtlabt_username" class="form-control" placeholder="Lab Technician Username"required><br>
     
-        <label>Clerk Password</label><br>
-        <input type="password" name="txtclerk_password" class="form-control" placeholder="Clerk Password"required><br>
+        <label>Lab Technician Password</label><br>
+        <input type="password" name="txtlabt_password" class="form-control" placeholder="Lab Technician Password"required><br>
        
-        <input type="submit" name="registerclerk_btn" class="btn btn-primary" value="Register Account">
+        <input type="submit" name="registerlabt_btn" class="btn btn-primary" value="Register Account">
         </div>
         </div>
         </div>    
@@ -74,10 +74,6 @@ integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9If
                                <tr>  
                                <td>Lab_Tech ID</td>  
                                     <td>Tech Name</td>  
-                
-                            
-                               
-                           
                                </tr>  
                           </thead>  
                           <?php  
