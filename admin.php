@@ -32,6 +32,8 @@ while($row2 = mysqli_fetch_array($result2))
    <link rel="stylesheet" href="css/bootstrap.min.css">
 
 <style>
+
+
   .headg{
     margin-left: 30px;
     margin-right: 30px;
@@ -70,9 +72,8 @@ while($row2 = mysqli_fetch_array($result2))
               <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
             </li>
           </ul>
-          <form class="form-inline my-2 my-lg-0" > 
-          <a class="btn btn-info my-2 my-sm-0" href="logout.php" role="button" >Sign Out</a>            
-
+          <form action="callfunctions.php"  method="POST">
+          <input type="submit" name="btn_signout" value="Sign Out" class="btn btn-primary" id="inputbtn">        
           </form>
         </div>
     </nav>
