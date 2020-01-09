@@ -3,7 +3,7 @@ session_start();
 $connect = mysqli_connect("localhost", "root", "", "hospital_db");  
 $query ="SELECT * FROM `lab_technician`";  
 $result = mysqli_query($connect, $query);  
-$d_id = "";
+$labid = "";
 
 // connect to mysql database
 try{
@@ -62,7 +62,7 @@ if(isset($_POST['delete']))
 <div class="card-body">
         <form class="form-group" action="delete_labt.php" method="post">
         <label>Enter Lab Tech  ID</label><br>
-            <input type="text" name="labt_idtxt" placeholder="Id" value="  <?php if(isset($d_id)){echo $d_id;}?>"><br><br>
+            <input type="text" name="labt_idtxt" placeholder="Id" value="  <?php if(isset($labid)){echo $labid;}?>"><br><br>
             <div>
                 <input type="submit" name="delete" value="Delete" class="btn btn-primary"> 
                 <input type="submit" name="refresh" value="Refresh" class="btn btn-primary" onClick="window.location.href=window.location.href"> 
