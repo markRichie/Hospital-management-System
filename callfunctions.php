@@ -66,6 +66,7 @@ if(isset($_POST['registerclerk_btn'])){
     header("Location:register_clerk.php?sucess");
 }
 
+
 //lab_tech
 if(isset($_POST['btndelete_lab'])){
     header("Location:delete_labt.php");
@@ -83,5 +84,53 @@ if(isset($_POST['btnadd_lab'])){
     header("Location:register_labtech.php");
 }
 
+if(isset($_POST['registerlabt_btn'])){
+
+    $labt_id=$_POST["labt_id"];
+    $txtlabt_username=$_POST["txtlabt_username"];
+    $labt_role=$_POST["labt_role"]; 
+    $txtlabt_password=$_POST["txtlabt_password"]; 
+   
+    $sql = "INSERT INTO `login`(password, username, role, id) VALUES ('$txtlabt_password', '$txtlabt_username', '$labt_role','$labt_id');";
+    mysqli_query($conn, $sql);
+    header("Location:register_labtech.php?sucess");
+}
 
 
+//pharmacist 
+if(isset($_POST['btndelete_phar'])){
+    header("Location:delete_phar.php");
+}
+if(isset($_POST['btncreate_phar'])){
+    header("Location:register_phar.php");
+}
+
+if(isset($_POST['btnadd_phar'])){
+
+    $txtphar_fname=$_POST["txtphar_fname"];
+ 
+    $sql = "INSERT INTO  `pharmacist`(name) VALUES ('$txtphar_fname');";
+    mysqli_query($conn, $sql);
+    header("Location:register_phar.php");
+}
+if(isset($_POST['registerphar_btn'])){
+
+        $phar_id=$_POST["phar_id"];
+        $txtphar_username=$_POST["txtphar_username"];
+        $phar_role=$_POST["phar_role"]; 
+        $txtphar_password=$_POST["txtphar_password"]; 
+       
+        $sql = "INSERT INTO `login`(password, username, role, id) VALUES ('$txtphar_password', '$txtphar_username', '$phar_role','$phar_id');";
+        mysqli_query($conn, $sql);
+        header("Location:register_phar.php?sucess");
+    }
+
+//signout
+
+if(isset($_POST['btn_signout'])){
+
+  session_destroy();
+  header('Location: logout.php'); 
+  exit;
+
+}
