@@ -42,8 +42,10 @@ if(isset($_POST['delete']))
     }
 }
 ?>
+
 <!DOCTYPE Html>
 <html>
+
     <head>
     <a class="nav-link" href="admin.php" style="color:black;"><i class="fa fa-signout"
      aria-hidden="true"></i>Back</a>
@@ -56,7 +58,8 @@ if(isset($_POST['delete']))
       </head>  
     
     </head>
-<body><div class="container" style="width:350px;margin-top:50px; float:center;" >
+<body>
+<div class="container" style="width:350px;margin-top:50px; float:center;">
 <div class="card">
 <div class="card-body">
         <form class="form-group" action="delete_doctor.php" method="post">
@@ -75,12 +78,12 @@ if(isset($_POST['delete']))
                 <h3 align="center">Registered Doctors</h3>  
                 <br />  
                 <div class="table-responsive">  
-                     <table id="doctor_table" class="table table-striped table-bordered">  
+                     <table id="doctor_table" class="table table-striped table-bordered" >  
                           <thead>  
                                <tr>  
                                     <td>Doctor ID</td>  
                                     <td>Full Name</td>  
-                                    <td>Username</td>  
+            
                                </tr>  
                           </thead>  
                           <?php  
@@ -108,3 +111,4 @@ if(isset($_POST['delete']))
  });  
  </script>
 </html>
+
