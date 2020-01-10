@@ -2,6 +2,7 @@
 session_start();
 //echo $_SESSION['color']; 
 $rle = $_SESSION["role"];
+//echo $rle;
 ?> 
 <!doctype html>
 <html lang="en">
@@ -36,7 +37,7 @@ $rle = $_SESSION["role"];
       }
       function tr(uid){
         //alert("voila")
-        window.location.href="http://localhost/MSS/reports.php?id="+uid;
+        window.location.href="http://localhost/MSS/patients_history.php?id="+uid;
       }
       function insertParam(key, value)
       {
@@ -86,7 +87,9 @@ $rle = $_SESSION["role"];
     <strong>Welcome !</strong>
     </div>
     
-    <button type="button" id = "nw" class="btn btn-info" data-toggle="modal" data-target="#new_admsn">New</button>
+    <?php if($rle == 'front office clerk'){
+    echo"<button type='button' id = 'nw' class='btn btn-info' data-toggle='modal' data-target='#new_admsn'>New</button>";
+    } ?>
 
     <table class="table table-hover">
       <thead>
@@ -95,7 +98,14 @@ $rle = $_SESSION["role"];
           <th scope="col">Patient Name</th>
           <th scope="col">Ward no</th>
           <th scope="col">Bed no</th>
-          <th scope="col">actions</th>
+          <?php if($rle == 'front office clerk'){
+              echo"<th scope='col'>actions</th>";
+          }
+          else{
+            echo"<th scope='col'>patient history</th>";
+          }
+          
+          ?>
         </tr>
       </thead>
       <!-- replace php code with config when common database-->
@@ -118,7 +128,12 @@ $rle = $_SESSION["role"];
               echo"<td>".$row['NIC']."</td>";
               echo"<td>".$row['ward_no']."</td>";
               echo"<td>".$row['bed_no']."</td>";
+              if($rle == 'front office clerk'){
               echo"<td><button type='button' class='btn btn-info'>Discharge</button></td>";
+              }
+              else{
+                echo"<td><button type='button' id=".$row['NIC']." class='btn btn-info' onclick='tr(this.id)'>view history</button></td>";
+              }
             echo"</tr>";
           }
         ?>
