@@ -187,5 +187,41 @@ if(isset($_POST['appointmentbtn'])){
     }
 }
 
+//appintment for exsisting user
+if(isset($_POST['appointbtn'])){
+    $nn=$_POST["txtNIC"];
+    $loc =  "Location: http://localhost/MSS/appointment.php.php";
+    $edate=$_POST["event_date"];
+    $tme=$_POST["atime"];
+    $dnme=$_POST["valuedoctors"];
+   
+    //echo $dnme;
+    //$query5= "INSERT INTO patient(`NIC`, `name`, `age`, `tel_no`) VALUES('$nn', '$fullnme', '$age', '$telno')";
+    //$query2= "SELECT d_id from doctor where name='$dnme'";
+    //$query1= "INSERT INTO appointment(`date`, `time`, `d_id`, `c_id`,`NIC`) VALUES('$edate', '$tme', '', ' ', '$nn')";
+    
+    //$result4 =mysqli_query($conn,$query5);
+    //$result1=mysqli_query($conn,$query);
+    
+    
+   
+        //$result1 =mysqli_query($conn,$query2);
+        $query2= "SELECT * from doctor where name='$dnme'";
+        $result1=mysqli_query($conn,$query2);
+        while ($row = mysqli_fetch_array($result1)) {
+            $er = $row['d_id'];
+        }
+
+        $query1= "INSERT INTO appointment(`date`, `time`, `d_id`,`NIC`) VALUES('$edate', '$tme', '$er','$nn')";
+        $result3=mysqli_query($conn,$query1);
+
+        if($result3){
+            echo "voila";
+            header("Location: http://localhost/MSS/appointment.php");
+        }
+        else{
+            echo mysqli_error($conn);
+        }
+}
 
 ?>

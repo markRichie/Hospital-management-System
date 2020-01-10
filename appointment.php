@@ -103,7 +103,8 @@ include "new_appointment.php";
       }
       else{
         echo"<strong>Welcome clerk!</strong>  </div>";
-        echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_history'>New</button>";
+        echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_history'>New patient</button>       ";
+        echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_istory'>New Appointment</button>";
        
       }
     ?>
