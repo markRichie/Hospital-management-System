@@ -1,7 +1,7 @@
 
 <?php
 //session_start();
-$connect = mysqli_connect("localhost", "root", "", "hmsdb");  
+$connect = mysqli_connect("localhost", "root", "", "hospital_db");  
 $query ="SELECT * FROM `doctor`";  
 $result = mysqli_query($connect, $query);  
 $query = "SELECT * FROM `doctor`";
@@ -51,11 +51,7 @@ $(document).ready(function(){
             </div>
             <div class="modal-body">
 
-    <form class="form-group" action="functions.php"  method="POST">
-    <label>NIC :</label><br>
-    <input type="text" name="txtNIC" class="form-control" placeholder="Enter Patients NIC"required>
-    <input type="submit" name="chk_nic" class="btn btn-primary" value="search">
-    </form>
+
     <form class="form-group" action="functions.php"  method="POST">
         
         <label>Full Name :</label>
@@ -64,17 +60,26 @@ $(document).ready(function(){
         <input type="text" name="txtNIC" class="form-control" placeholder="Enter Patients NIC"required><br>
         <label>Contact Number :</label><br>
         <input type="text" name="txtcontact" class="form-control" placeholder="Enter Patients Phone Number"required><br>
+        <label>Age: </label><br>
+        <input type="text" name="txtage" class="form-control" placeholder="Enter Patients age"required><br>
 
         <div class="dates" class="form-control">
-        <label>Choose Date</label>
+        <label>Date</label>
         <input type="text" class="form-control" id="usr1" name="event_date" placeholder="YYYY-MM-DD" autocomplete="off" required>
         <br>
-        <label>Select Time:</label><br>
-        <input type="text" class="form-control" id="time" name="txttime">
+            <label for="exampleSelect1">Select Time</label>
+            <select class="form-control" id="exampleSelect1" name="atime">
+                <option>3.00</option>
+                <option>4.00</option>
+                <option>5.00</option>
+                <option>6.00</option>
+                <option>7.00</option>
+                <option>8.00</option>
+            </select>
         <br>
         
-        <select name="valuedoctors"class="form-control">
-        <option value="" disabled selected hidden>Select Doctor</option>
+        <select name="valuedoctors" class="form-control">
+        <option value="" disabled selected hidden >Select Doctor</option>
             <?php echo $options;?>
         </select>
         <br><br><br>
