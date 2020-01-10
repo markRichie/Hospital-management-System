@@ -83,7 +83,7 @@ $rle = $_SESSION["role"];
   <div class="headg" >
     <h1>Admissions</h1>
     <div class="alert alert-dismissible alert-info">
-    <strong>front office clerk : </strong>
+    <strong>Welcome !</strong>
     </div>
     
     <button type="button" id = "nw" class="btn btn-info" data-toggle="modal" data-target="#new_admsn">New</button>
@@ -142,6 +142,8 @@ $rle = $_SESSION["role"];
                             <input type='text' name='name' class='form-control'></input>
                             <h6>NIC</h6>
                             <input type='text' name='nic' class='form-control'></input>
+                            <h6>Age</h6>
+                            <input type='text' name='age' class='form-control'></input>
                             <h6>telephone no</h6>
                             <input type='text' name='telno' class='form-control'></input>
                             <h6>ward no</h6>
@@ -152,7 +154,7 @@ $rle = $_SESSION["role"];
                             
             </div>  
             <div class="modal-footer">
-                <button type="submit" class="btn btn-primary" name="new_admission">Save changes</button>
+                <button type="submit" class="btn btn-primary" name="new_admission">Add</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
             </div>
             </div>

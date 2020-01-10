@@ -224,4 +224,38 @@ if(isset($_POST['appointbtn'])){
         }
 }
 
+
+if(isset($_POST['new_admission'])){
+    $nn=$_POST["nic"];
+    $loctn =  "Location: http://localhost/MSS/admissions.php";
+    $nme = $_POST["name"];
+    $ag=$_POST["age"];
+    $tno=$_POST["telno"];
+    $wno=$_POST["wno"];
+    $beno=$_POST["bno"];
+   
+
+    $query= "INSERT INTO patient(`NIC`, `name`, `age`, `tel_no`) VALUES('$nn', '$nme', '$ag', '$tno')";
+    
+    $result =mysqli_query($conn,$query);
+    //$result1=mysqli_query($conn,$query);
+
+    if($result){
+        //header($loctn);
+        $query7= "INSERT INTO admission(`NIC`, `ward_no`, `bed_no`, `status`) VALUES('$nn', '$wno', '$beno', 'admitted')";
+        $result8 =mysqli_query($conn,$query7);
+
+        if($result8){
+            header($loctn);
+        }
+        else{
+            echo mysqli_error($conn);
+        }
+
+    }
+    else{
+        echo mysqli_error($conn);
+    }
+}
+
 ?>
