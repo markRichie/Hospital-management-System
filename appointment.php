@@ -33,7 +33,9 @@ include "new_appointment.php";
         margin-top: 5px;
       }
       #nw{
-        margin-bottom: 10px;
+        margin-top: 33px;
+        margin-bottom: 40px;
+        margin-left: 25px;
       }
       #sr{
         margin-right: 10px;
@@ -46,6 +48,10 @@ include "new_appointment.php";
     <script>
       function al(){
         modal.style.display = "block";
+      }
+      function adm(){
+        //alert("voila")
+        window.location.href = "http://localhost/MSS/admissions.php";
       }
       function tr(uid){
         //alert("voila")
@@ -78,7 +84,7 @@ include "new_appointment.php";
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
       <h5 style="color: #808281;">Asceso Hospitals</h5>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor03" aria-controls="navbarColor03" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -94,7 +100,10 @@ include "new_appointment.php";
         </div>
     </nav>
   <div class="headg" >
-    <h1>Appointments</h1>
+    <div>
+    <h1 style="text-align:left;float:left; margin-bottom:20px;">Appointments</h1>
+    <button type="button" id="nw" class="btn btn-info" onclick="adm()">Admissions</button>
+    </div>
     <div class="alert alert-dismissible alert-info">
     <?php
       if($rle == "doctor"){
