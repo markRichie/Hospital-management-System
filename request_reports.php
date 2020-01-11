@@ -75,9 +75,9 @@ $rle = $_SESSION["role"];
           <a class="nav-link" href="#"><span class="sr-only">(current)</span></a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <button class="btn btn-info my-2 my-sm-0" type="submit">Sign out</button>
-      </form>
+      <form class="form-inline my-2 my-lg-0" action="callfunctions.php"  method="POST">
+            <button class="btn btn-info my-2 my-sm-0"  name="btn_signout" type="submit">Sign out</button>
+          </form>
     </div>
   </nav>
   <div class="headg" >
