@@ -38,7 +38,7 @@ if(isset($_POST['loginbtn'])){
             {
                 //$_SESSION['idi'] = $row["username"];
                 $_SESSION['role'] = $row["role"];
-                $_SESSION['t_id'] = $row["id"];
+                $_SESSION['idi'] = $row["id"];
                 header('Location: request_reports.php');
             }
             elseif($row["role"] == "pharmacist")

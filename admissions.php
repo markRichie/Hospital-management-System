@@ -1,6 +1,6 @@
 <?php 
 session_start();
-//echo $_SESSION['color']; 
+$ddid = $_SESSION['idi']; 
 $rle = $_SESSION["role"];
 //echo $rle;
 ?> 
@@ -28,12 +28,18 @@ $rle = $_SESSION["role"];
         margin-top: 5px;
       }
       #nw{
-        margin-bottom: 20px;
+        margin-top: 33px;
+        margin-bottom: 40px;
+        margin-left: 25px;
       }
     </style>
     <script>
       function al(){
         modal.style.display = "block";
+      }
+      function adm(){
+        //alert("voila")
+        window.location.href = "http://localhost/MSS/appointment.php";
       }
       function tr(uid){
         //alert("voila")
@@ -82,7 +88,8 @@ $rle = $_SESSION["role"];
     </div>
   </nav>
   <div class="headg" >
-    <h1>Admissions</h1>
+    <h1 style="text-align:left;float:left; margin-bottom:20px;">Admissions</h1>
+    <button type="button" id="nw" class="btn btn-info" onclick="adm()">Appointment</button>
     <div class="alert alert-dismissible alert-info">
     <strong>Welcome !</strong>
     </div>
@@ -113,6 +120,8 @@ $rle = $_SESSION["role"];
         <?php
 
           $conn = mysqli_connect("localhost", "root", "","hospital_db");
+
+          if($rle == 'front office clerk'){
           $query = mysqli_query($conn,"select * from admission where status = 'admitted'");
           //echo $query;
           
@@ -128,10 +137,26 @@ $rle = $_SESSION["role"];
               echo"<td>".$row['NIC']."</td>";
               echo"<td>".$row['ward_no']."</td>";
               echo"<td>".$row['bed_no']."</td>";
-              if($rle == 'front office clerk'){
+              
               echo"<td><button type='button' class='btn btn-info'>Discharge</button></td>";
               }
+            }
               else{
+                $query = mysqli_query($conn,"select * from admission where ward_no = (select ward_no from ward where d_id = '$ddid')");
+                //echo $query;
+                
+
+                //$num = 1;
+                while ($row = mysqli_fetch_array($query)) {
+                  echo"<tr>";
+                    //echo"<td>".$num."</td>";
+                    //$nme = $row['NIC'];
+                    //$query1 = mysqli_query($conn,"select * from patient where NIC = '$nme'");
+                    //$row1 = mysqli_fetch_array($query1);
+                    echo"<td>".$row['ad_no']."</td>";
+                    echo"<td>".$row['NIC']."</td>";
+                    echo"<td>".$row['ward_no']."</td>";
+                    echo"<td>".$row['bed_no']."</td>";
                 echo"<td><button type='button' id=".$row['NIC']." class='btn btn-info' onclick='tr(this.id)'>view history</button></td>";
               }
             echo"</tr>";

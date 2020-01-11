@@ -2,7 +2,7 @@
 session_start();
 
 $somevar = $_GET["id"];
-//$rle = $_SESSION["t_id"];
+$rle = $_SESSION["idi"];
 $prsn = $_SESSION["role"];
 ?> 
 
