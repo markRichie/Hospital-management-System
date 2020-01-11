@@ -32,6 +32,11 @@ $rle = $_SESSION["role"];
         margin-bottom: 40px;
         margin-left: 25px;
       }
+      #n{
+       
+        margin-bottom: 20px;
+        
+      }
     </style>
     <script>
       function al(){
@@ -95,7 +100,7 @@ $rle = $_SESSION["role"];
     </div>
     
     <?php if($rle == 'front office clerk'){
-    echo"<button type='button' id = 'nw' class='btn btn-info' data-toggle='modal' data-target='#new_admsn'>New</button>";
+    echo"<button type='button' id = 'n' class='btn btn-info' data-toggle='modal' data-target='#new_admsn'>New</button>";
     } ?>
 
     <table class="table table-hover">
@@ -126,20 +131,26 @@ $rle = $_SESSION["role"];
           //echo $query;
           
 
-          //$num = 1;
+          $num = 1;
           while ($row = mysqli_fetch_array($query)) {
             echo"<tr>";
               //echo"<td>".$num."</td>";
               //$nme = $row['NIC'];
               //$query1 = mysqli_query($conn,"select * from patient where NIC = '$nme'");
               //$row1 = mysqli_fetch_array($query1);
+              $nicn = $row['NIC'];
               echo"<td>".$row['ad_no']."</td>";
-              echo"<td>".$row['NIC']."</td>";
+              echo"<td>".$nicn."</td>";
               echo"<td>".$row['ward_no']."</td>";
               echo"<td>".$row['bed_no']."</td>";
               
-              echo"<td><button type='button' class='btn btn-info'>Discharge</button></td>";
+              echo"<form action='admission_bill.php'  method='POST'>
+              <input type='hidden' value='$nicn' name='ni'>";
+              echo"<td><button type='submit' class='btn btn-info'>Discharge</button></td> </form>";
+              $num++;
               }
+              //echo $num;
+
             }
               else{
                 $query = mysqli_query($conn,"select * from admission where ward_no = (select ward_no from ward where d_id = '$ddid')");

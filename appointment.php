@@ -44,6 +44,11 @@ include "new_appointment.php";
         overflow: hidden;
         width: 100%;
       }
+      #n{
+       
+       margin-bottom: 20px;
+       
+     }
     </style>
     <script>
       function al(){
@@ -112,8 +117,8 @@ include "new_appointment.php";
       }
       else{
         echo"<strong>Welcome clerk!</strong>  </div>";
-        echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_history'>New patient</button>       ";
-        echo"<button type='button' id='nw' class='btn btn-info' data-toggle='modal' data-target='#new_istory'>New Appointment</button>";
+        echo"<button type='button' id='n' class='btn btn-info' data-toggle='modal' data-target='#new_history'>New patient</button>       ";
+        echo"<button type='button' id='n' class='btn btn-info' data-toggle='modal' data-target='#new_istory'>New Appointment</button>";
        
       }
     ?>

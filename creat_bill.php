@@ -39,7 +39,7 @@ $pdf->Cell(25 ,5,'',0,0);
 $pdf->Cell(34 ,5,'',0,1);//end of line
 
 $pdf->Cell(130 ,5,'',0,0);
-$pdf->Cell(25 ,5,'Customer NIC no',0,0);
+$pdf->Cell(25 ,5,'Customer NIC no'.$nic,0,0);
 $pdf->Cell(34 ,5,'',0,1);//end of line
 
 //make a dummy empty cell as a vertical spacer
