@@ -89,8 +89,8 @@ while($row2 = mysqli_fetch_array($result2))
                 <div class="row">
                   <div class="col-md-4"><label>Full Name:</label></div>
                   <div class="col-md-8"><input type="text" class="form-control"  name="txtdoc_fname" placeholder="Enter Doctors Full Name"required></div><br><br>
-                  <div class="col-md-4"><label>Fees:</label></div>
-                  <div class="col-md-8"><input type="text"  class="form-control" name="txtdoc_fees" placeholder="Enter Doctors Fees"required></div><br><br>
+                  <div class="col-md-4"><label>Fees: ($)</label></div>
+                  <div class="col-md-8"><input type="text"  class="form-control" name="txtdoc_fees" placeholder="Enter Doctors Hourly Rate"required></div><br><br>
                   
                   <div class="col-md-7">
                     <input type="submit" name="btnadd_doc" value="Register Doctor" class="btn btn-primary" id="inputbtn">
